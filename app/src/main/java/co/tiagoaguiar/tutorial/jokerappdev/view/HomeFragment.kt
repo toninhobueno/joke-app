@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.tutorial.jokerappdev.R
@@ -48,11 +49,17 @@ class HomeFragment : Fragment() {
 
         progressBar = view.findViewById(R.id.progress_bar)
 
-        presenter.findAllCategories()
-
+        if (adapter.itemCount == 0) {
+            presenter.findAllCategories()
+        }
         recyclerView.adapter = adapter
 
-
+        adapter.setOnItemClickListener{item, view ->
+            val bundle = Bundle()
+            val categoryName = (item as CategoryItem).category.name
+            bundle.putString(JokeFragment.CATEGORY_KEY, categoryName)
+           findNavController().navigate(R.id.action_nav_home_to_nav_joke,bundle)
+        }
 
 
     }
