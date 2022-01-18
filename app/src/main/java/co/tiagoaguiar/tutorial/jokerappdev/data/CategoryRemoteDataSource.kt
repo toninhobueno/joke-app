@@ -30,6 +30,7 @@ class CategoryRemoteDataSource {
 
             override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 callback.onError(t.message ?: "Erro interno")
+                callback.onComplete()
             }
 
         })

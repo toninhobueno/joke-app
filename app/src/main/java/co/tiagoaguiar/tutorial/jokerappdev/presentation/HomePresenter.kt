@@ -21,7 +21,6 @@ class HomePresenter (
         dataSource.findAllCategory(this)
     }
 
-
     // output (SUCESSO | FALHA | COMPLETE)
     override fun onSuccess(response: List<String>){
         val start = 45 // H - matiz
