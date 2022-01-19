@@ -12,7 +12,7 @@ class JokeRemotedDataSource {
 
         HTTPClient.retrofit()
             .create(ChuckNorrisAPI::class.java)
-            .findBy(categoryName)
+            .findRandom(categoryName)
             .enqueue(object : Callback<Joke>{
                 override fun onResponse(call: Call<Joke>, response: Response<Joke>) {
                     if (response.isSuccessful){
